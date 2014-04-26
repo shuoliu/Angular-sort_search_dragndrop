@@ -1,0 +1,39 @@
+body {
+	font-size:16px;
+	font-family:arial,sans-serif;
+	width:600px;
+	margin:auto;
+}
+
+a {
+	text-decoration:none;
+}
+
+.background {
+	padding:5px;
+	background-color:#efefef;
+}
+
+.content {
+	background-color:#dfdfdf;
+}
+
+.table-search {
+	float: left;
+    margin: 0;
+    padding: 0;
+	width: 100%;
+}
+
+.row:nth-child(odd) {
+	background-color:#CCCCCC;
+}
+
+.draggable {
+  user-select: none;
+  cursor: move;
+}
+
+.dragging {
+  opacity: 0.5;
+}

@@ -1,0 +1,59 @@
+<!doctype html>
+<html ng-app="project">
+<head>
+  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.0.8/angular.min.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.0.8/angular-resource.min.js"></script>
+  <script src="project.js"></script>
+  <script src="dragndrop.js"></script>
+  <link rel="stylesheet" href="custom.css">
+</head>
+<body>
+<div class="background">
+<div class="content">
+    <h2>My Projects</h2>
+    <div ng-controller="ListCtrl">
+		<input type="text" ng-model="search.$" class="search-query" placeholder="Search"></input>
+		<table>
+		<thead>
+			<tr ng-init="criteria=''">
+			<th><a href="" ng-click="criteria=orderBy(criteria,'name')">Project</a></th>
+			<th><a href="" ng-click="criteria=orderBy(criteria,'description')">Description</a></th>
+			<th><a href="" ng-click="criteria=orderBy(criteria,'file_size')">File Size</a></th>
+			<th><a href="" ng-click="criteria=orderBy(criteria,'creation_date')">Date</a></th>
+			<tr>
+			<th><input type="text" ng-model="search.name" class="search-query table-search"></input></th>
+			<th><input type="text" ng-model="search.description" class="search-query table-search"></input></th>
+			<th><input type="text" ng-model="search.file_size" class="search-query table-search"></input></th>
+			<th><input type="text" ng-model="search.creation_date" class="search-query table-search"></input></th>
+			</tr>
+			</tr>
+		</thead>
+		<tbody>
+			<tr ng-repeat="project in projects.projects | filter:search | orderBy:criteria" draggable class='row draggable'>
+			<td><a href="\{{project.name}}.zip">{{project.name}}</a></td>
+			<td>{{project.description}}</td>
+			<td>{{project.file_size}}</td>
+			<td>{{project.creation_date}}</td>
+			</tr>
+		</tbody>
+		</table>
+	</div>
+</div>
+<p>
+<p>Drag projects above and drop into the cart below:</p>
+<div class="content" droppable ng-init="size=0">
+<table>
+<tbody>
+<tr ng-repeat="library in selected.projects">
+<td>{{library.name}}</td>
+<td>{{library.file_size}}</td>
+</tr>
+<tr><td>&nbsp;</td></tr>
+<tr><td><b>TOTAL SIZE:</b></td><td><b>{{size}}B</b></td></tr>
+</tbody>
+</table>
+</div>
+<button id="download">Download</button>
+</div>
+</body>
+</html>
